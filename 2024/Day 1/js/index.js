@@ -2,7 +2,8 @@ const fs = require("fs");
 const path = require("path");
 
 // Path to the text file
-const filePath = path.join(__dirname, "../input-day1.txt");
+const filePath = path.join(__dirname, "../input-demo.txt");
+//const filePath = path.join(__dirname, "../input-day1.txt");
 
 /**
  * Reads a file and returns its content as a string.
