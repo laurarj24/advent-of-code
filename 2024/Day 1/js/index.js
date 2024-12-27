@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 // Path to the text file
-const filePath = path.join(__dirname, "../input-demo.txt");
+const filePath = path.join(__dirname, "../input-day1.txt");
 //const filePath = path.join(__dirname, "../input-day1.txt");
 
 /**
@@ -26,7 +26,7 @@ function readFile(filePath) {
  * Solves the puzzle by processing the content of the file.
  * @param {string} data - The content of the file.
  */
-function solvePuzzle(data) {
+function solvePuzzlePartOne(data) {
   let leftDigits = [];
   let rightDigits = [];
 
@@ -53,7 +53,34 @@ function solvePuzzle(data) {
   console.log("Result:", sum);
 }
 
+
+function solvePuzzlePartTwo(data) {
+
+  let leftDigits = [];
+  let rightDigits = [];
+
+  // Split the input into lines
+  const lines = data.split("\n");
+
+  lines.forEach((line) => {
+    // Split the line into two parts based on spaces
+    const [left, right] = line.trim().split(/\s+/);
+    if (left) leftDigits.push(Number(left));
+    if (right) rightDigits.push(Number(right));
+  });
+
+
+  let sum = 0;
+  leftDigits.forEach((num) => {
+    let countRight = rightDigits.filter(val => val === num);
+    if(countRight.length > 0){
+      sum += num * countRight.length;
+    }
+  })
+
+  console.log('Result: ', sum);
+}
 // Main execution
 readFile(filePath)
-  .then((data) => solvePuzzle(data))
+  .then((data) => solvePuzzlePartTwo(data))
   .catch((error) => console.error(error.message));
